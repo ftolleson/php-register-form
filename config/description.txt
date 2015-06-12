@@ -1,0 +1,94 @@
+form registration
+
+db table
+
+first name (20) - check
+last name (20) - check
+sex - todo
+isadmin - todo
+date of birth  - todo
+login - uniq id 
+password - md5 hash + secret code
+photo - (y/n) path to photo /upload
+email (30) - check  
+created - auto
+
+db test table Users
+
+CREATE TABLE Users (
+         login INT NOT NULL PRIMARY KEY,
+         first_name VARCHAR(20) NOT NULL,
+         last_name VARCHAR(20) NOT NULL,
+         password VARCHAR(20) NOT NULL,
+         photo VARCHAR(1),
+         email VARCHAR(30),         
+         last_access TIMESTAMP,
+         created_at TIMESTAMP DEFAULT NOW()
+       ) ENGINE=INNODB;
+
+isadmin
+
+csrf code
+CREATE TABLE CSRF_codes (         
+         csrf VARCHAR(30) NOT NULL PRIMARY KEY,
+         created_at TIMESTAMP DEFAULT NOW()
+       ) ENGINE=INNODB;
+
+Config file
+- user_cookie_secirity
+- password_security
+- photo saving path 
+
+widget for photo 
+
+todo in interface
+bootstrap, jquery view
+
+view
+form page partial
+- FormReg
+- FormLogin
+
+[/login]
+login_page 
+
+ - Get 
+ 1g) if logged in redirect to profile page
+ 2g) else show login page 
+
+ - Post 
+ 1p) if logged in redirect to profile page
+ 2p) if not logged in and if error login form data or\and passwd show view form page with errors 
+ 3p) if not logged and if no errors in login form then login add cookie then redirect to profile page
+
+[/register]
+registration_page 
+ - get
+ 1g) if logged in redirect to profile page
+ 2g) if not logged in show register page
+
+ - post 
+ 1p) if logged in redirect to profile page
+ 2p) if error login or\and passwd then show register form(get) page with errors else login(create cookie) and redirect to profile page 
+
+[/profile]
+profile_page 
+ - get 
+1g) if not logged in redirect to refferer page or to login page
+2g) if logged in show profile page
+ - post
+1p) todo: if not logged in redirect to refferer page or to login page
+2p) todo: if logged in check data and change profile data 
+
+[/logout]
+link to logout 
+ - get 
+ 1g) if not logged in redirect to login page 
+ 2g) if logged in delete cookie, redirect to login page
+
+All pages
+- csrf (uniqid code)
+- .htaccess for disabling access to files
+
+todo 
+- jquery widget for uploading photo
